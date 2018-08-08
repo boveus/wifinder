@@ -13,3 +13,6 @@
 ### Getting Started ###
 Identify the wireless interface you want to set to monitor mode using `ip a` or `ifconfig`. 
 Set the device to monitor mode using the following command: `sudo airmon-ng start <interface name>` then run Wireshark and capture some packets.
+
+### Resources ###
+There is a good sampling of wireshark packet captures that can be used for testing (here)[ftp://ftp.bro-ids.org/enterprise-traces/hdr-traces05/].

@@ -8,18 +8,16 @@ I am currently learning about packet dissection and capture filtering using Lua 
 
 ### Pre-requistite Software ###
 - Some version of linux/unix. (Monitoring mode for WiFi NICs is not well supported in OSX/Windows)
-- These commands should work to place the wifi adapter in monitor mode:
-```bash
-ifconfig 
-<get NIC name ex. wlan0>
-sudo ifconfig <adapter> down
-sudo iwconfig <adapter> mode monitor
-sudo ifconfig <adapter> up
-```
+- Wireshark
 
 ### Getting Started ###
 Identify the wireless interface you want to set to monitor mode using `ip a` or `ifconfig`.
-Set the device to monitor mode using the following command: `sudo airmon-ng start <interface name>` then run Wireshark and capture some packets.
+Set the device to monitor mode using the following commands
+```bash
+sudo ifconfig <interface> down
+sudo iwconfig <interface> mode monitor
+sudo ifconfig <interface> up
+```
 
 To display only probe requests, use the following wireshark display filter:
 ```

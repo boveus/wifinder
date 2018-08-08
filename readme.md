@@ -29,4 +29,4 @@ wlan.fc.type_subtype eq 4
 ```
 
 ### Resources ###
-There is a good sampling of wireshark packet captures that can be used for testing (here)[ftp://ftp.bro-ids.org/enterprise-traces/hdr-traces05/].
+There is a good sampling of wireshark packet captures that can be used for testing [here](ftp://ftp.bro-ids.org/enterprise-traces/hdr-traces05/).

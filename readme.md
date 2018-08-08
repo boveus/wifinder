@@ -23,6 +23,10 @@ To display only probe requests, use the following wireshark display filter:
 ```
 wlan.fc.type_subtype == 0x08
 ```
+To capture only probe requests, you can use the following capture filter:
+```
+wlan.fc.type_subtype eq 4
+```
 
 ### Resources ###
 There is a good sampling of wireshark packet captures that can be used for testing (here)[ftp://ftp.bro-ids.org/enterprise-traces/hdr-traces05/].

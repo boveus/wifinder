@@ -25,7 +25,7 @@ wlan.fc.type_subtype == 0x08
 ```
 To capture only probe requests, you can use the following capture filter:
 ```
-wlan.fc.type_subtype eq 4
+subtype probereq
 ```
 
 ### Resources ###

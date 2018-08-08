@@ -1,5 +1,5 @@
 ### About ###
-This is a project to use [Lua with Wireshark](https://wiki.wireshark.org/Lua) and [Roda](https://github.com/jeremyevans/roda) and some sort of front end interface to create a simple tracking program for tracking and finding information about wifi devices.  
+This is a project to use [Lua with Wireshark](https://wiki.wireshark.org/Lua) and [Roda](https://github.com/jeremyevans/roda) and some sort of front end interface to an application that can be used for tracking and finding information about wifi devices.  For the time being this is intended to passively monitor traffic rather than use packet injection to generate additional traffic.
 
 I am currently learning about packet dissection and capture filtering using Lua and Wireshark.  Once I get some basic filtering set up, I am planning to store this data in a SQL DB and present it locally using Roda.
 

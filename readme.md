@@ -11,5 +11,10 @@
  Download [here](https://www.wireshark.org/download.html).
 
 ### Getting Started ###
-Identify the wireless interface you want to set to monitor mode using `ip a` or `ifconfig`. 
+Identify the wireless interface you want to set to monitor mode using `ip a` or `ifconfig`.
 Set the device to monitor mode using the following command: `sudo airmon-ng start <interface name>` then run Wireshark and capture some packets.
+
+To display only probe requests, use the following wireshark display filter:
+```
+wlan.fc.type_subtype == 0x08
+```

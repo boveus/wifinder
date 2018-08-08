@@ -1,3 +1,8 @@
+### About ###
+This is a project to use (Lua with Wireshark)[https://wiki.wireshark.org/Lua] and (Roda)[https://github.com/jeremyevans/roda] and some sort of front end interface to create a simple tracking program for tracking and finding information about wifi devices.  
+
+I am currently learning about packet dissection and capture filtering using Lua and Wireshark.  Once I get some basic filtering set up, I am planning to store this data in a SQL DB and present it locally using Roda.
+
 ### Pre-requistite Hardware ###
 - A network interface [card](https://www.acrylicwifi.com/en/support-webinars-wifi-wireless-network-software-tools/compatible-hardware/) capable of (monitor mode)[https://en.wikipedia.org/wiki/Monitor_mode]
 

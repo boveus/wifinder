@@ -27,6 +27,12 @@ To capture only probe requests, you can use the following capture filter:
 ```
 subtype probereq
 ```
+![wireshark](https://user-images.githubusercontent.com/20469703/43873015-c7a73290-9b52-11e8-85b9-31683bdd22e2.png)
+
+To generate a CSV to ingest into the application, use Wireshark's built in functionality to save the packets as a CSV:
+
+![save_as_csv](https://user-images.githubusercontent.com/20469703/43873029-dfc5e902-9b52-11e8-9913-d79c0c68f7fa.PNG)
 
 ### Resources ###
 There is a good sampling of wireshark packet captures that can be used for testing [here](ftp://ftp.bro-ids.org/enterprise-traces/hdr-traces05/).
+

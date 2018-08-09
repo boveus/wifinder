@@ -1,0 +1,21 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    csv (3.0.0)
+    figaro (1.1.1)
+      thor (~> 0.14)
+    pg (1.0.0)
+    sequel (5.11.0)
+    thor (0.20.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  csv
+  figaro
+  pg
+  sequel
+
+BUNDLED WITH
+   1.16.2

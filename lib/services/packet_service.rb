@@ -3,6 +3,7 @@ require 'csv'
 require './lib/models/packet'
 
 class PacketService
+  attr_reader :packets
   def initialize(packet_csv)
     @packet_csv = packet_csv
     @packets = []

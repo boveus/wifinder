@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
-gem "pg"
+gem 'sqlite3'
 gem 'figaro'
 gem 'csv'
-gem 'sequel'
 gem 'minitest'

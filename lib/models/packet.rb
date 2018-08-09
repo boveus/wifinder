@@ -6,7 +6,7 @@ class Packet
                    :info
 
   def initialize(data)
-    @time = data[:time]
+    @capturetime = data[:time]
     @source = data[:source]
     @destination = data[:destination]
     @protocol = data[:protocol]

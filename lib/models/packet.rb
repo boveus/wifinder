@@ -12,5 +12,4 @@ class Packet
     @protocol = data[:protocol]
     @info = data[:info]
   end
-
 end

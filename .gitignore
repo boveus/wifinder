@@ -1,5 +1,6 @@
 data
 hidden_notes
+db
 
 # Ignore application configuration
 /config/application.yml

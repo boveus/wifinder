@@ -12,4 +12,8 @@ class Packet
     @protocol = data[:protocol]
     @info = data[:info]
   end
+
+  def to_a
+    [@capturetime, @source, @destination, @protocol, @info]
+  end
 end

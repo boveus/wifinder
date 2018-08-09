@@ -7,6 +7,7 @@ class PacketService
   def initialize(packet_csv)
     @packet_csv = packet_csv
     @packets = []
+    parse
   end
 
   def csv

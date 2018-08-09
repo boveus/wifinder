@@ -13,7 +13,7 @@ class DatabaseService
   end
 
   def migrate
-    rows = @db.execute <<-SQL
+    @db.execute <<-SQL
       create table packets (
         id int,
         capturetime date,

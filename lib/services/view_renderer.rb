@@ -17,6 +17,10 @@ class ViewRenderer
     @home_page.write("</table")
   end
 
+  def metadata
+    
+  end
+
   def table_header
     "<table>
       <tr>

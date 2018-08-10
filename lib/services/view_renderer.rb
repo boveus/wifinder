@@ -10,6 +10,7 @@ class ViewRenderer
   end
 
   def render
+    @home_page.write(head)
     @home_page.write(table_header)
     @db.execute( "select * from packets" ) do |row|
       @home_page.write(pretty_print(row))
@@ -17,8 +18,11 @@ class ViewRenderer
     @home_page.write("</table")
   end
 
-  def metadata
-    
+  def head
+    "<head>
+    <title>Analysis</title>
+    <link rel='stylesheet' type='text/css' href='style.css' />
+    </head>"
   end
 
   def table_header

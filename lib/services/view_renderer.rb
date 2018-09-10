@@ -15,7 +15,7 @@ class ViewRenderer
     @db.execute( "select * from packets" ) do |row|
       @home_page.write(pretty_print(row))
     end
-    @home_page.write("</table")
+    @home_page.write("</table>")
   end
 
   def head

@@ -25,7 +25,8 @@ class DatabaseService
         source varchar,
         destination varchar,
         protocol varchar,
-        info varchar
+        info varchar,
+        ssid varchar
       );
     SQL
   end

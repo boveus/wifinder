@@ -29,6 +29,10 @@ class Packet
     SQLite3::Database.new("./db/wifinder.db")
   end
 
+  def self.last_id
+    db.execute("SELECT rowid from packets order by ROWID DESC limit 1")
+  end
+
   def to_a
     [@id, @capturetime, @source, @destination, @protocol, @info]
   end

@@ -20,7 +20,7 @@ class DatabaseService
   def migrate
     @db.execute <<-SQL
       create table packets (
-        id int,
+        id INTEGER PRIMARY KEY,
         capturetime date,
         source varchar,
         destination varchar,

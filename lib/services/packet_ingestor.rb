@@ -2,8 +2,8 @@ require './lib/services/packet_service'
 require './lib/services/database_service'
 require 'sqlite3'
 class PacketIngestor
-  def initialize(packet_csv)
-    @packets = PacketService.new(packet_csv).packets
+  def initialize
+    @packets = PacketService.new.packets
     DatabaseService.new
     @db = SQLite3::Database.new("./db/wifinder.db")
   end

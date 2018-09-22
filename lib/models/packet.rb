@@ -25,28 +25,30 @@ class Packet
         info: row[5] })
   end
 
+  def self.db
+    SQLite3::Database.new("./db/wifinder.db")
+  end
+
   def to_a
     [@id, @capturetime, @source, @destination, @protocol, @info]
   end
 
-  # example arguments={source: "Microsof_bd:7f:f8"}
-  def self.find_by(arguments)
-    column = arguments.keys.first
-    value = arguments.values.first
-    db = SQLite3::Database.new("./db/wifinder.db")
+  def self.query(sql_query)
     packets = []
-    db.execute( "select * from packets WHERE #{column} = '#{value}'" ) do |row|
+    db.execute( sql_query ) do |row|
       packets << Packet.create_from_row(row)
     end
     packets
   end
 
+  # example arguments={source: "Microsof_bd:8f:f3"}
+  def self.find_by(arguments)
+    column = arguments.keys.first
+    value = arguments.values.first
+    query("select * from packets WHERE #{column} = '#{value}'")
+  end
+
   def self.all
-    db = SQLite3::Database.new("./db/wifinder.db")
-    packets = []
-    db.execute( "select * from packets" ) do |row|
-      packets << Packet.create_from_row(row)
-    end
-    packets
+    query("select * from packets" )
   end
 end

@@ -2,14 +2,19 @@ require 'sqlite3'
 class DatabaseService
   def initialize
     drop
-    find_or_create
+    create_folder
+    create
     @db = SQLite3::Database.new("./db/wifinder.db")
     migrate
   end
 
-  def find_or_create
-    return true if @db
-    `mkdir db && touch ./db/wifinder.db`
+  def create_folder
+    return if Dir.exist?('./db/')
+    `mkdir db `
+  end
+
+  def create
+    `touch ./db/wifinder.db`
   end
 
   def migrate

@@ -1,0 +1,7 @@
+data
+hidden_notes
+db
+lib/views/home.html
+
+# Ignore application configuration
+/config/application.yml

@@ -6,12 +6,11 @@ DatabaseService.new
 PacketIngestor.new.ingest
 ViewRenderer.new.render
 
-puts Packet.all.count
-# puts 'Unique Sources'
-# puts ' ----- '
-# puts Packet.unique_sources
-# puts ' ----- '
-# puts 'Unique SSIDs'
-# puts ' ---- '
-# puts Packet.unique_ssids
-# puts ' ---- '
+puts 'Unique Sources'
+puts ' ----- '
+puts Packet.unique_sources
+puts ' ----- '
+puts 'Unique SSIDs'
+puts ' ---- '
+puts Packet.unique_ssids
+puts ' ---- '

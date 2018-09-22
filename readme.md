@@ -33,4 +33,3 @@ To generate a CSV to ingest into the application, use Wireshark's built in funct
 
 ### Resources ###
 There is a good sampling of wireshark packet captures that can be used for testing [here](ftp://ftp.bro-ids.org/enterprise-traces/hdr-traces05/).
-

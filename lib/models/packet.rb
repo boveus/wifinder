@@ -41,6 +41,14 @@ class Packet
     packets
   end
 
+  def ssid
+    @info.split('=').last
+  end
+
+  def self.unique_ssids
+    all.map(&:ssid).uniq
+  end
+
   # example arguments={source: "Microsof_bd:8f:f3"}
   def self.find_by(arguments)
     column = arguments.keys.first

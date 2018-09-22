@@ -5,3 +5,13 @@ require './lib/services/database_service'
 DatabaseService.new
 PacketIngestor.new('./data/test_data.csv').ingest
 ViewRenderer.new.render
+
+
+puts 'Unique Sources'
+puts ' ----- '
+puts Packet.unique_sources
+puts ' ----- '
+puts 'Unique SSIDs'
+puts ' ---- '
+puts Packet.unique_ssids
+puts ' ---- '

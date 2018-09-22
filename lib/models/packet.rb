@@ -49,6 +49,10 @@ class Packet
     all.map(&:ssid).uniq
   end
 
+  def self.unique_sources
+    query("select DISTINCT source FROM packets").map(&:to_a).map(&:compact)
+  end
+
   # example arguments={source: "Microsof_bd:8f:f3"}
   def self.find_by(arguments)
     column = arguments.keys.first

@@ -65,4 +65,8 @@ class Packet
   def self.all
     query("select * from packets" )
   end
+
+  def self.count
+    all.count
+  end
 end

@@ -1,7 +1,6 @@
 require 'sqlite3'
 class DatabaseService
   def initialize
-    drop
     create_folder
     create
     @db = SQLite3::Database.new("./db/wifinder.db")
@@ -18,6 +17,20 @@ class DatabaseService
   end
 
   def migrate
+    create_packets_table
+    create_devices_table
+  end
+
+  def create_devices_table
+    @db.execute <<-SQL
+      create table devices (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        mac_addr varchar
+      );
+    SQL
+  end
+
+  def create_packets_table
     @db.execute <<-SQL
       create table packets (
         id INTEGER PRIMARY KEY,
@@ -29,9 +42,5 @@ class DatabaseService
         ssid varchar
       );
     SQL
-  end
-
-  def drop
-    `rm ./db/wifinder.db`
   end
 end

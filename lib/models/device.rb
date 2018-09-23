@@ -1,6 +1,7 @@
 require 'sqlite3'
 class Device
-  attr_accessor :mac_addr
+  attr_accessor :id,
+                :mac_addr
 
   def initialize(row)
     @id = row[0]

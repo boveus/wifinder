@@ -4,7 +4,8 @@ class Packet
                    :source,
                    :destination,
                    :protocol,
-                   :info
+                   :info,
+                   :ssid
 
   def initialize(data)
     @id = data[:id]
@@ -13,6 +14,7 @@ class Packet
     @destination = data[:destination]
     @protocol = data[:protocol]
     @info = data[:info]
+    @ssid = data[:info].split('=').last
   end
 
   def self.create_from_row(row)
@@ -29,8 +31,12 @@ class Packet
     SQLite3::Database.new("./db/wifinder.db")
   end
 
+  def self.last_id
+    db.execute("SELECT rowid from packets order by ROWID DESC limit 1")
+  end
+
   def to_a
-    [@id, @capturetime, @source, @destination, @protocol, @info]
+    [@id, @capturetime, @source, @destination, @protocol, @info, @ssid]
   end
 
   def self.query(sql_query)
@@ -41,16 +47,12 @@ class Packet
     packets
   end
 
-  def ssid
-    @info.split('=').last
-  end
-
   def self.unique_ssids
-    all.map(&:ssid).uniq
+    db.execute("select DISTINCT ssid FROM packets")
   end
 
   def self.unique_sources
-    query("select DISTINCT source FROM packets").map(&:to_a).map(&:compact)
+    db.execute("select DISTINCT source FROM packets")
   end
 
   # example arguments={source: "Microsof_bd:8f:f3"}
@@ -62,5 +64,9 @@ class Packet
 
   def self.all
     query("select * from packets" )
+  end
+
+  def self.count
+    all.count
   end
 end

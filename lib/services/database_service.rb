@@ -1,31 +1,46 @@
 require 'sqlite3'
 class DatabaseService
   def initialize
-    drop
-    find_or_create
+    create_folder
+    create
     @db = SQLite3::Database.new("./db/wifinder.db")
     migrate
   end
 
-  def find_or_create
-    return true if @db
-    `mkdir db && touch ./db/wifinder.db`
+  def create_folder
+    return if Dir.exist?('./db/')
+    `mkdir db `
+  end
+
+  def create
+    `touch ./db/wifinder.db`
   end
 
   def migrate
+    create_packets_table
+    create_devices_table
+  end
+
+  def create_devices_table
     @db.execute <<-SQL
-      create table packets (
-        id int,
-        capturetime date,
-        source varchar,
-        destination varchar,
-        protocol varchar,
-        info varchar
+      create table devices (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        mac_addr varchar
       );
     SQL
   end
 
-  def drop
-    `rm ./db/wifinder.db`
+  def create_packets_table
+    @db.execute <<-SQL
+      create table packets (
+        id INTEGER PRIMARY KEY,
+        capturetime date,
+        source varchar,
+        destination varchar,
+        protocol varchar,
+        info varchar,
+        ssid varchar
+      );
+    SQL
   end
 end

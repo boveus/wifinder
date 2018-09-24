@@ -1,3 +1,5 @@
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/boveus/wifinder.svg?columns=all)](https://waffle.io/boveus/wifinder)
+
 ### About ###
 This is a project to use ~~[Lua with Wireshark](https://wiki.wireshark.org/Lua) and [Roda](https://github.com/jeremyevans/roda)~~ Wireshark, ActiveRecord, and a simple html page hosted via rack based on this awesome [tweet](https://twitter.com/tenderlove/status/351554818579505152).  I would like to add a simple JS front end (Probably vanilla JS with Datatables) to reduce page reloads.  The basic idea of this app is to help visualize packet data and add some additional analytic capability for a large number of packets.  I want the app to be as light weight as possible so I am opting for a simple rack app rather than Sinatra or Roda and probably vanilla JS instead of jQuery or React.  For the time being this is intended to passively monitor traffic rather than use packet injection to generate additional traffic, but I am intending it to be agnostic as far as how the packets are actually captured.
 

@@ -3,7 +3,7 @@
 ### About ###
 This is a project to use Wireshark to gather packets and SQL with simple html pages to display and analyze packet information.  I would like to add a simple JS front end (Probably vanilla JS with Datatables) to reduce page reloads.  The basic idea of this app is to help visualize packet data and add some additional analytic capability for a large number of packets.  I want the app to be as light weight as possible so I am opting for a simple rack app rather than Rails, Sinatra or Roda.  I am aiming for as few dependencies as possible. 
 
-For the time being this is intended to passively monitor traffic rather than use packet injection to generate additional traffic, but I am intending it to be agnostic as far as how the packets are actually captured. 
+For the time being this is intended to passively monitor traffic rather than use packet injection to generate additional traffic, but I am intending it to be agnostic as far as how the packets are actually generated. 
 
 ### Pre-requistite Hardware ###
 - A network interface [card](https://www.acrylicwifi.com/en/support-webinars-wifi-wireless-network-software-tools/compatible-hardware/) capable of [monitor mode](https://en.wikipedia.org/wiki/Monitor_mode)

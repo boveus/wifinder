@@ -16,8 +16,13 @@ class Device
     all.count
   end
 
+  def self.find(id)
+   result = db.execute("select * FROM devices WHERE id = (?)", id)
+   Device.new(result.first)
+  end
+
   def self.all
-    query("select * from devices" )
+    query("select * FROM devices" )
   end
 
   def self.query(sql_query)

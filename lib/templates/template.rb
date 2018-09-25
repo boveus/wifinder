@@ -1,3 +1,4 @@
+require './lib/models/device'
 class Template
   def initialize(page, data = {})
     @data = data
@@ -8,8 +9,8 @@ class Template
     @template = File.read(file)
   end
 
-  def visit_count
-    @data[:visit_count]
+  def device
+    Device.find(@data[:id])
   end
 
   def render

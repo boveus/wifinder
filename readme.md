@@ -41,3 +41,15 @@ There are also four rake tasks:
 - `rake run` runs the lib/runner.rb file
 - `rake serve` serves the contents of the 'views' folder on localhost:5000
 - `rake view` launches the default web browser (in linux) and opens the `views/home.html` page.
+
+### Setup Instructions ###
+
+- Clone this repo
+- In the root directory create a `data` folder, and put one or more CSVs with Wireshark packet capture data (following the instructions above) in it
+- If you don't have them installed already, install [ruby](https://www.ruby-lang.org/en/documentation/installation/) and [bundler](https://bundler.io/)
+- In the root directory, run `bundle install` to install the dependencies of the project
+- Run `rake setup` to get the database populated and the CSVs migrated.  Depending on how many/how large the files are this can take a little bit of time
+- Run `rake serve` - This will launch a rack server on port 9000.
+- To view the server, you can go to http://localhost:9000 or, on linux-based systems, you can run `rake view`
+- To reset the database (clearing out all of the data) you can run `rake reset`
+

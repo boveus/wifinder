@@ -6,7 +6,7 @@ This is a project to use Wireshark to gather packets and SQL with simple html pa
 For the time being this is intended to passively monitor traffic rather than use packet injection to generate additional traffic, but I am intending it to be agnostic as far as how the packets are actually captured. 
 
 ### Pre-requistite Hardware ###
-- A network interface [card](https://www.acrylicwifi.com/en/support-webinars-wifi-wireless-network-software-tools/compatible-hardware/) capable of (monitor mode)[https://en.wikipedia.org/wiki/Monitor_mode]
+- A network interface [card](https://www.acrylicwifi.com/en/support-webinars-wifi-wireless-network-software-tools/compatible-hardware/) capable of [monitor mode](https://en.wikipedia.org/wiki/Monitor_mode)
 
 ### Pre-requistite Software ###
 - Some version of linux/unix. (Monitoring mode for WiFi NICs is not well supported in OSX/Windows)

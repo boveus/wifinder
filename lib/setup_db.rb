@@ -1,6 +1,5 @@
 require './lib/services/view_renderer'
 require './lib/services/packet_ingestor'
-require './lib/services/database_service'
 
 if File.exist?('./db/wifinder.db')
   puts "DB file exists, skipping DB creation - if you intended to create a fresh DB, run rake reset"

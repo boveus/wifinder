@@ -9,6 +9,10 @@ class Template
     @template = File.read(file)
   end
 
+  def devices
+    Device.all
+  end
+
   def device
     Device.find(@data[:id])
   end

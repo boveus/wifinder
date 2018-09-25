@@ -1,6 +1,7 @@
 class Routes
   ROUTES = {
     "/device" => :device,
+    "/devices" => :devices
   }
 
   def initialize(env)

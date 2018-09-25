@@ -1,4 +1,4 @@
 desc 'view home page in the default browser'
 task :view do
-  `xdg-open ./lib/views/home.html`
+  `xdg-open http://localhost:9000/devices`
 end

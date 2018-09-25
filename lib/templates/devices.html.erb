@@ -1,0 +1,4 @@
+<h1> Device Show Page </h1>
+<% devices.each do | device | %>
+  <a href='/device?<%= device.id %>'> <%= device.mac_addr %> </a> ||
+<% end %>

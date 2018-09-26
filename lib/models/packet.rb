@@ -1,4 +1,6 @@
-class Packet
+require './lib/models/base_model'
+
+class Packet < BaseModel
     attr_accessor  :id,
                    :capturetime,
                    :source,
@@ -7,6 +9,8 @@ class Packet
                    :info,
                    :ssid
 
+  @@tablename = 'packets'
+  @@klassname = 'Packet'
   def initialize(data)
     @id = data[:id]
     @capturetime = data[:time]
@@ -25,10 +29,6 @@ class Packet
         destination: row[3],
         protocol: row[4],
         info: row[5] })
-  end
-
-  def self.db
-    @@db ||= SQLite3::Database.new("./db/wifinder.db")
   end
 
   def self.last_id
@@ -53,21 +53,5 @@ class Packet
 
   def self.unique_sources
     db.execute("select DISTINCT source FROM packets")
-  end
-
-  # example arguments={source: "Microsof_bd:8f:f3"}
-  def self.find_by(arguments)
-    column = arguments.keys.first
-    value = arguments.values.first
-    row = db.execute("select * from packets WHERE #{column} = (?)", value).first
-    Packet.new(row)
-  end
-
-  def self.all
-    query("select * from packets" )
-  end
-
-  def self.count
-    all.count
   end
 end

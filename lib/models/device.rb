@@ -1,13 +1,15 @@
 require 'sqlite3'
-require './lib/models/base_model'
+require './lib/models/model_methods'
 require './lib/models/packet'
 
-class Device < BaseModel
+class Device
+  KLASSNAME = 'Device'
+  TABLE_NAME = 'devices'
+  include ModelMethods
+
   attr_accessor :id,
                 :mac_addr
 
-  @@tablename = 'devices'
-  @@klassname = 'Device'
   def initialize(row)
     @id = row[0]
     @mac_addr = row[1]

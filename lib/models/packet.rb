@@ -1,6 +1,9 @@
-require './lib/models/base_model'
+require './lib/models/model_methods'
+class Packet
+    KLASSNAME = 'Packet'
+    TABLE_NAME = 'packets'
+    include ModelMethods
 
-class Packet < BaseModel
     attr_accessor  :id,
                    :capturetime,
                    :source,
@@ -9,8 +12,6 @@ class Packet < BaseModel
                    :info,
                    :ssid
 
-  @@tablename = 'packets'
-  @@klassname = 'Packet'
   def initialize(data)
     @id = data[:id]
     @capturetime = data[:time]

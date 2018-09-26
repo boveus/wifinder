@@ -1,18 +1,22 @@
 require 'sqlite3'
 require './lib/models/device'
 require './lib/models/packet'
-require './lib/models/base_model'
+require './lib/models/model_methods'
 
-@@tablename = 'ssids'
-@@klassname = 'Ssid'
-class Ssid < BaseModel
+
+class Ssid
+  KLASSNAME = 'Ssid'
+  TABLE_NAME = 'ssids'
+  include ModelMethods
+
   attr_accessor :id,
                 :name
 
-  @@tablename = 'ssids'
   def initialize(row)
     @id = row[0]
     @name = row[1]
+    @klassname = 'Ssid'
+    @table_name = 'ssids'
   end
 
   def self.find(id)

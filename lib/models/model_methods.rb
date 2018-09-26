@@ -21,11 +21,7 @@ module ModelMethods
       column = arguments.keys.first.to_s
       value = arguments.values.first.to_s
       row = db.execute("select * FROM #{self.const_get(:TABLE_NAME)} WHERE (?) = (?)", column, value).first
-      if row
-        self.new(row)
-      else
-        false
-      end
+      row ? self.new(row) : false
     end
   end
 end

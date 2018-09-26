@@ -1,5 +1,6 @@
 require 'sqlite3'
 require './lib/models/packet'
+require './lib/models/ssid'
 
 class Device
   attr_accessor :id,
@@ -10,12 +11,21 @@ class Device
     @mac_addr = row[1]
   end
 
+  def ssid_count
+    Device.db.execute("select COUNT(DISTINCT devicessids.ssidid) from
+    devicessids where deviceid = (?)", id).first.first
+  end
+
   def ssids
-    Packet.find_by(source: mac_addr).map(&:ssid).uniq
+    # This is gross and needs to be improved
+    ssid_ids = Device.db.execute("select ssidid from devicessids WHERE deviceid = (?)", id).uniq
+    ssid_ids.map do |id|
+      Ssid.find(id)
+    end
   end
 
   def self.db
-    SQLite3::Database.new("./db/wifinder.db")
+    @@db ||= SQLite3::Database.new("./db/wifinder.db")
   end
 
   def self.count
@@ -23,8 +33,15 @@ class Device
   end
 
   def self.find(id)
-    result = db.execute("select * FROM devices WHERE id = (?)", id)
+    result = db.execute("select * FROM devices WHERE id = (?)", id.to_i)
     Device.new(result.first)
+  end
+
+  def self.find_by(arguments)
+    column = arguments.keys.first
+    value = arguments.values.first
+    row = db.execute("select * from devices WHERE #{column} = (?)", value).first
+    Device.new(row)
   end
 
   def self.all

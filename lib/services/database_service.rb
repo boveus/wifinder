@@ -19,6 +19,8 @@ class DatabaseService
   def migrate
     create_packets_table
     create_devices_table
+    create_ssids_table
+    create_device_ssids_table
   end
 
   def create_devices_table
@@ -30,10 +32,30 @@ class DatabaseService
     SQL
   end
 
+  def create_device_ssids_table
+    @db.execute <<-SQL
+      create table devicessids (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        deviceID INTEGER REFERENCES devices,
+        ssidID INTEGER REFERENCES ssids
+      );
+    SQL
+  end
+
+  def create_ssids_table
+    @db.execute <<-SQL
+      create table ssids (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name varchar,
+        CONSTRAINT name_unique UNIQUE(name)
+      );
+    SQL
+  end
+
   def create_packets_table
     @db.execute <<-SQL
       create table packets (
-        id INTEGER PRIMARY KEY,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         capturetime date,
         source varchar,
         destination varchar,

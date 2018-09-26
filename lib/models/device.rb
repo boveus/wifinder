@@ -15,12 +15,16 @@ class Device
     @mac_addr = row[1]
   end
 
-  def ssids
-    Packet.find_by(source: mac_addr).map(&:ssid).uniq
+  def ssid_count
+    Device.db.execute("select COUNT(DISTINCT devicessids.ssidid) from
+    devicessids where deviceid = (?)", id).first.first
   end
 
-  def self.find(id)
-    result = db.execute("select * FROM devices WHERE id = (?)", id)
-    Device.new(result.first)
+  def ssids
+    # This is gross and needs to be improved
+    ssid_ids = Device.db.execute("select ssidid from devicessids WHERE deviceid = (?)", id).uniq
+    ssid_ids.map do |id|
+      Ssid.find(id)
+    end
   end
 end

@@ -34,7 +34,7 @@ class DatabaseService
 
   def create_device_ssids_table
     @db.execute <<-SQL
-      create table devices (
+      create table devicessids (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         deviceID INTEGER REFERENCES devices,
         ssidID INTEGER REFERENCES ssids
@@ -44,9 +44,10 @@ class DatabaseService
 
   def create_ssids_table
     @db.execute <<-SQL
-      create table devices (
+      create table ssids (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name varchar
+        name varchar,
+        UNIQUE(name)
       );
     SQL
   end

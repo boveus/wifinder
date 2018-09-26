@@ -1,7 +1,10 @@
 require './lib/services/packet_service'
 require './lib/services/database_service'
 require './lib/models/device'
+require './lib/models/ssid'
 require 'sqlite3'
+require 'pry'
+
 class PacketIngestor
   def initialize
     @packets = PacketService.new.packets
@@ -13,7 +16,8 @@ class PacketIngestor
     @packets.each do |packet|
       create_packet(packet)
       device = create_device(packet.source)
-      create_device_ssid(device.id, packet.ssid)
+      create_ssid(packet.ssid)
+      create_device_ssid(packet.source, packet.ssid)
     end
   end
 
@@ -22,8 +26,14 @@ class PacketIngestor
               VALUES (?, ?, ?, ?, ?, ?, ?)", packet.to_a)
   end
 
-  def create_device_ssid(device_id, packet_ssid)
-    # todo, add values to join
+  def create_ssid(ssid)
+    @db.execute("INSERT OR IGNORE INTO ssids (name) VALUES (?)", ssid)
+  end
+
+  def create_device_ssid(source, packet_ssid)
+    device_id = Device.find_by(mac_addr: source).id
+    ssid_id = Ssid.find_by(name: packet_ssid).id
+    @db.execute("INSERT INTO devicessids (deviceID, ssidID) VALUES(?, ?)", device_id, ssid_id)
   end
 
   def create_device(packet_source)

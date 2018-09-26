@@ -21,7 +21,14 @@ class Ssid
 
   def self.find(id)
     result = db.execute("select * FROM ssids WHERE id = (?)", id)
-    SSid.new(result.first)
+    Ssid.new(result.first)
+  end
+
+  def self.find_by(arguments)
+    column = arguments.keys.first
+    value = arguments.values.first
+    row = db.execute("select * from ssids WHERE #{column} = (?)", value).first
+    Ssid.new(row)
   end
 
   def self.all

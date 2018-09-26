@@ -59,7 +59,8 @@ class Packet
   def self.find_by(arguments)
     column = arguments.keys.first
     value = arguments.values.first
-    query("select * from packets WHERE #{column} = '#{value}'")
+    row = db.execute("select * from packets WHERE #{column} = (?)", value).first
+    Packet.new(row)
   end
 
   def self.all

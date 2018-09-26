@@ -17,6 +17,7 @@ class Device
   end
 
   def ssids
+    # This is gross and needs to be improved
     ssid_ids = Device.db.execute("select ssidid from devicessids WHERE deviceid = (?)", id).uniq
     ssid_ids.map do |id|
       Ssid.find(id)
@@ -24,7 +25,7 @@ class Device
   end
 
   def self.db
-    SQLite3::Database.new("./db/wifinder.db")
+    @@db ||= SQLite3::Database.new("./db/wifinder.db")
   end
 
   def self.count

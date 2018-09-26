@@ -47,7 +47,7 @@ class DatabaseService
       create table ssids (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name varchar,
-        UNIQUE(name)
+        CONSTRAINT name_unique UNIQUE(name)
       );
     SQL
   end

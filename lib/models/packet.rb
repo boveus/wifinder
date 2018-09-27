@@ -1,4 +1,9 @@
+require './lib/models/model_methods'
 class Packet
+    KLASSNAME = 'Packet'
+    TABLE_NAME = 'packets'
+    include ModelMethods
+
     attr_accessor  :id,
                    :capturetime,
                    :source,
@@ -27,24 +32,30 @@ class Packet
         info: row[5] })
   end
 
-  def self.db
-    @@db ||= SQLite3::Database.new("./db/wifinder.db")
-  end
-
   def self.last_id
     db.execute("SELECT rowid from packets order by ROWID DESC limit 1")
   end
 
-  def to_a
-    [@id, @capturetime, @source, @destination, @protocol, @info, @ssid]
+  # find is different for packets, because it is created from a Hash
+  # instead of from an array like the other models.
+  # todo: refactor this to behave like the other models and get rid of this.
+  def self.find(id)
+    result = db.execute("select * FROM #{table_name} WHERE id = (?)", id)
+    result.first ? self.create_from_row(result.first) : false
   end
 
-  def self.query(sql_query)
-    packets = []
-    db.execute( sql_query ) do |row|
-      packets << Packet.create_from_row(row)
+  def self.all
+    db.execute("select * from packets" ).map do |row|
+      Packet.create_from_row(row)
     end
-    packets
+  end
+
+  def self.count
+    db.execute("select COUNT(*) from packets")[0][0]
+  end
+
+  def to_a
+    [@id, @capturetime, @source, @destination, @protocol, @info, @ssid]
   end
 
   def self.unique_ssids
@@ -53,21 +64,5 @@ class Packet
 
   def self.unique_sources
     db.execute("select DISTINCT source FROM packets")
-  end
-
-  # example arguments={source: "Microsof_bd:8f:f3"}
-  def self.find_by(arguments)
-    column = arguments.keys.first
-    value = arguments.values.first
-    row = db.execute("select * from packets WHERE #{column} = (?)", value).first
-    Packet.new(row)
-  end
-
-  def self.all
-    query("select * from packets" )
-  end
-
-  def self.count
-    all.count
   end
 end

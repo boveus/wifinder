@@ -27,7 +27,6 @@ class PacketService
 
   def parse(csv)
     csv.each do |line|
-      line[:id] = (@count += 1)
       @packets << Packet.new(line)
     end
   end

@@ -1,8 +1,12 @@
 require 'sqlite3'
+require './lib/models/model_methods'
 require './lib/models/packet'
 require './lib/models/ssid'
-
 class Device
+  KLASSNAME = 'Device'
+  TABLE_NAME = 'devices'
+  include ModelMethods
+
   attr_accessor :id,
                 :mac_addr
 
@@ -12,47 +16,16 @@ class Device
   end
 
   def ssid_count
-    Device.db.execute("select COUNT(DISTINCT devicessids.ssidid) from
+    Device.db.execute("SELECT COUNT(DISTINCT devicessids.ssidid) from
     devicessids where deviceid = (?)", id).first.first
   end
 
   def ssids
-    # This is gross and needs to be improved
-    ssid_ids = Device.db.execute("select ssidid from devicessids WHERE deviceid = (?)", id).uniq
-    ssid_ids.map do |id|
-      Ssid.find(id)
+    ssid_rows = Device.db.execute("SELECT * FROM ssids
+      WHERE id IN
+      (SELECT ssidid FROM devicessids WHERE deviceid = (?))", id)
+    ssid_rows.map do |row|
+      Ssid.new(row)
     end
-  end
-
-  def self.db
-    @@db ||= SQLite3::Database.new("./db/wifinder.db")
-  end
-
-  def self.count
-    all.count
-  end
-
-  def self.find(id)
-    result = db.execute("select * FROM devices WHERE id = (?)", id.to_i)
-    Device.new(result.first)
-  end
-
-  def self.find_by(arguments)
-    column = arguments.keys.first
-    value = arguments.values.first
-    row = db.execute("select * from devices WHERE #{column} = (?)", value).first
-    Device.new(row)
-  end
-
-  def self.all
-    query("select * FROM devices" )
-  end
-
-  def self.query(sql_query)
-    devices = []
-    db.execute( sql_query ) do |row|
-      devices << Device.new(row)
-    end
-    devices
   end
 end

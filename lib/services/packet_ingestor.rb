@@ -10,9 +10,11 @@ class PacketIngestor
     @packets = PacketService.new.packets
     DatabaseService.new
     @db = SQLite3::Database.new("./db/wifinder.db")
+    @total = @packets.length
   end
 
   def ingest
+    count = 0
     @packets.each do |packet|
       create_packet(packet)
       device = create_device(packet.source)
@@ -31,9 +33,11 @@ class PacketIngestor
   end
 
   def create_device_ssid(source, packet_ssid)
-    device_id = Device.find_by(mac_addr: source).id
-    ssid_id = Ssid.find_by(name: packet_ssid).id
-    @db.execute("INSERT INTO devicessids (deviceID, ssidID) VALUES(?, ?)", device_id, ssid_id)
+    device_id = Device.find_by(mac_addr: source)
+    ssid_id = Ssid.find_by(name: packet_ssid)
+    if device_id && ssid_id
+      @db.execute("INSERT INTO devicessids (deviceID, ssidID) VALUES(?, ?)", [device_id.id, ssid_id.id])
+    end
   end
 
   def create_device(packet_source)

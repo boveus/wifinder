@@ -1,7 +1,7 @@
 require 'sqlite3'
 require './lib/models/model_methods'
 require './lib/models/packet'
-
+require './lib/models/ssid'
 class Device
   KLASSNAME = 'Device'
   TABLE_NAME = 'devices'
@@ -21,11 +21,11 @@ class Device
   end
 
   def ssids
-    # This is gross and needs to be improved
-    ssid_ids = Device.db.execute("SELECT * FROM ssids WHERE id = (SELECT ssidid FROM devicessids WHERE deviceid = 1)")
-    Device.db.execute("SELECT ssidid FROM devicessids WHERE deviceid = 1")
-    ssid_ids.map do |id|
-      Ssid.find(id)
+    ssid_rows = Device.db.execute("SELECT * FROM ssids
+      WHERE id IN
+      (SELECT ssidid FROM devicessids WHERE deviceid = (?))", id)
+    ssid_rows.map do |row|
+      Ssid.new(row)
     end
   end
 end

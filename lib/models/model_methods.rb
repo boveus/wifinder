@@ -20,7 +20,7 @@ module ModelMethods
     end
 
     def count
-      all.count
+      db.execute("select COUNT(*) from #{table_name}")[0][0]
     end
 
     def find(id)

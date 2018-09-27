@@ -16,12 +16,4 @@ class Ssid
     @id = row[0]
     @name = row[1]
   end
-
-  def self.query(sql_query)
-    ssids = []
-    db.execute( sql_query ) do |row|
-      ssids << Ssid.new(row)
-    end
-    ssids
-  end
 end

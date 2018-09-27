@@ -1,3 +1,4 @@
+require 'sqlite3'
 module ModelMethods
   def self.included(model)
     model.extend(ClassMethods)
@@ -33,7 +34,6 @@ module ModelMethods
       column = arguments.keys.first.to_s
       value = arguments.values.first.to_s
       row = db.execute("select * FROM #{table_name} WHERE #{column} = (?)", value).first
-      binding.pry
       row ? self.new(row) : false
     end
   end

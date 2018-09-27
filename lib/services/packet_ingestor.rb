@@ -34,7 +34,7 @@ class PacketIngestor
     device_id = Device.find_by(mac_addr: source)
     ssid_id = Ssid.find_by(name: packet_ssid)
     if device_id && ssid_id
-      @db.execute("INSERT INTO devicessids (deviceID, ssidID) VALUES(?, ?)", device_id.id, ssid_id.id)
+      @db.execute("INSERT INTO devicessids (deviceID, ssidID) VALUES(?, ?)", [device_id.id, ssid_id.id])
     end
   end
 

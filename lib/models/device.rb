@@ -16,13 +16,14 @@ class Device
   end
 
   def ssid_count
-    Device.db.execute("select COUNT(DISTINCT devicessids.ssidid) from
+    Device.db.execute("SELECT COUNT(DISTINCT devicessids.ssidid) from
     devicessids where deviceid = (?)", id).first.first
   end
 
   def ssids
     # This is gross and needs to be improved
-    ssid_ids = Device.db.execute("select ssidid from devicessids WHERE deviceid = (?)", id).uniq
+    ssid_ids = Device.db.execute("SELECT * FROM ssids WHERE id = (SELECT ssidid FROM devicessids WHERE deviceid = 1)")
+    Device.db.execute("SELECT ssidid FROM devicessids WHERE deviceid = 1")
     ssid_ids.map do |id|
       Ssid.find(id)
     end

@@ -5,7 +5,7 @@ module ModelMethods
 
   module ClassMethods
     def db
-      @@db ||= SQLite3::Database.new("./db/wifinder.db")
+      SQLite3::Database.new("./db/wifinder.db")
     end
 
     def table_name
@@ -28,10 +28,12 @@ module ModelMethods
     end
 
     # example arguments={source: "Microsof_bd:8f:f3"}
+    # This should be improved to account for multiple arguments
     def find_by(arguments)
       column = arguments.keys.first.to_s
       value = arguments.values.first.to_s
-      row = db.execute("select * FROM #{table_name} WHERE (?) = (?)", column, value).first
+      row = db.execute("select * FROM #{table_name} WHERE #{column} = (?)", value).first
+      binding.pry
       row ? self.new(row) : false
     end
   end

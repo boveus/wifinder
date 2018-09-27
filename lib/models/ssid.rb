@@ -15,13 +15,6 @@ class Ssid
   def initialize(row)
     @id = row[0]
     @name = row[1]
-    @klassname = 'Ssid'
-    @table_name = 'ssids'
-  end
-
-  def self.find(id)
-    result = db.execute("select * FROM ssids WHERE id = (?)", id)
-    Ssid.new(result.first)
   end
 
   def self.query(sql_query)

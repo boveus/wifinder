@@ -10,9 +10,11 @@ class PacketIngestor
     @packets = PacketService.new.packets
     DatabaseService.new
     @db = SQLite3::Database.new("./db/wifinder.db")
+    @total = @packets.length
   end
 
   def ingest
+    count = 0
     @packets.each do |packet|
       create_packet(packet)
       device = create_device(packet.source)

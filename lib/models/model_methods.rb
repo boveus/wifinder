@@ -6,7 +6,7 @@ module ModelMethods
 
   module ClassMethods
     def db
-      SQLite3::Database.new("./db/wifinder.db")
+      @@db ||= SQLite3::Database.new("./db/wifinder.db")
     end
 
     def table_name

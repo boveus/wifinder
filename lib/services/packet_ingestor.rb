@@ -14,9 +14,16 @@ class PacketIngestor
   end
 
   def ingest
-    count = 0
     @packets.each do |packet|
       create_packet(packet)
+      device = create_device(packet.source)
+      create_ssid(packet.ssid)
+      create_device_ssid(packet.source, packet.ssid)
+    end
+  end
+
+  def ingest_without_packets
+    @packets.each do |packet|
       device = create_device(packet.source)
       create_ssid(packet.ssid)
       create_device_ssid(packet.source, packet.ssid)

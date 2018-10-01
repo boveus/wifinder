@@ -4,9 +4,8 @@ require 'json'
 
 desc 'start capturing packets (device must be in monitor mode)'
 task :capture do
-  # interface = "#{ENV["interface"]}"
-  # `tshark -i #{interface} -f "subtype probereq"`
-  cmd = "tshark -i wlx00c0ca46a047 -f 'subtype probereq' -e frame.time -e wlan.sa -e wlan.ssid -T fields"
+  interface = "#{ENV["interface"]}"
+  cmd = "tshark -i #{interface} -f 'subtype probereq' -e frame.time -e wlan.sa -e wlan.ssid -T fields"
   begin
     PTY.spawn( cmd ) do |stdout, stdin, pid|
       begin

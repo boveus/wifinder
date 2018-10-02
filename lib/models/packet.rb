@@ -24,8 +24,7 @@ class Packet
 
   def self.create_from_row(row)
     Packet.new(
-        { id: row[0],
-        time: row[1],
+        { time: row[1],
         source: row[2],
         destination: row[3],
         protocol: row[4],

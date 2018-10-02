@@ -1,4 +1,4 @@
-desc 'setup the database'
+desc 'Setup the database'
 task :setup do
   ruby "./lib/setup_db.rb"
 end

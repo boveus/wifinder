@@ -11,7 +11,6 @@ class PacketIngestor
 
   def initialize
     @packets = PacketService.new.packets
-    DatabaseService.new
     @db = SQLite3::Database.new("./db/wifinder.db")
   end
 

@@ -1,35 +1,11 @@
 require './lib/services/database_service'
 require './lib/models/device'
 require './lib/models/ssid'
-<<<<<<< HEAD
-=======
 require './lib/services/packet_ingestion_behavior'
->>>>>>> 48532a2e2970487b4d75d69c50c9495e1d6c9e0d
 require 'sqlite3'
 require 'pry'
 
 class PacketStreamIngestor
-<<<<<<< HEAD
-  include PacketIngestionBehavior
-
-  def initialize
-    DatabaseService.new
-    @db = SQLite3::Database.new("./db/wifinder.db")
-  end
-
-
-  def create_packet_from_stream(stream_row)
-    Packet.new()
-  end
-
-  def ingest_from_stream(stream_row)
-    create_packet(packet)
-    device = create_device(packet.source)
-    create_ssid(packet.ssid)
-    create_device_ssid(packet.source, packet.ssid)
-  end
-
-=======
   attr_reader :db
   include PacketIngestionBehavior
 
@@ -70,5 +46,4 @@ class PacketStreamIngestor
       create_device_ssid(packet.source, packet.ssid)
     end
   end
->>>>>>> 48532a2e2970487b4d75d69c50c9495e1d6c9e0d
 end

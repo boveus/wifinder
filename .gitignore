@@ -2,6 +2,7 @@ data
 big_data
 hidden_notes
 db
+backup
 lib/views/home.html
 
 # Ignore application configuration

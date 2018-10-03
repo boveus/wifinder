@@ -19,8 +19,9 @@ For the time being this is intended to passively monitor traffic rather than use
 - A network interface [card](https://www.acrylicwifi.com/en/support-webinars-wifi-wireless-network-software-tools/compatible-hardware/) capable of [monitor mode](https://en.wikipedia.org/wiki/Monitor_mode)
 
 ## Pre-requistite Software ##
-- Some version of linux/unix. (Monitoring mode for WiFi NICs is not well supported in OSX/Windows)
-- Wireshark
+- Some version of linux/unix. (Monitoring mode for WiFi NICs is not well supported in OSX/Windows) 
+- I tested this in Ubuntu 16.04
+- Wireshark (Available at https://www.wireshark.org/)
 
 # Getting Started #
 Identify the wireless interface you want to set to monitor mode using `ip a` or `ifconfig`.

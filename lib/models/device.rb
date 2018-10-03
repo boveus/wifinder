@@ -15,6 +15,16 @@ class Device
     @mac_addr = row[1]
   end
 
+  def active_hours(day=Time.now.day, month=Time.now.month)
+    Device.db.execute("SELECT DISTINCT hour from
+    activetimes where deviceid = (?) AND day = (?) AND month = (?)", [id, day, month])
+  end
+
+  def active_days(month=Time.now.month)
+    Device.db.execute("SELECT DISTINCT day from
+    activetimes where deviceid = (?) AND month = (?)", [id, month]).first
+  end
+
   def ssid_count
     Device.db.execute("SELECT COUNT(DISTINCT devicessids.ssidid) from
     devicessids where deviceid = (?)", id).first.first

@@ -1,7 +1,7 @@
 [![Waffle.io - Columns and their card count](https://badge.waffle.io/boveus/wifinder.svg?columns=all)](https://waffle.io/boveus/wifinder)
 
 # About #
-This is a project to use Wireshark to gather capture packets and view some analysis about them in an html page.  There is currently a simple JS front end using data tables and a Rack server.
+This is a project to use Wireshark to capture packets and view some analysis about them in an html page.  There is currently a simple JS front end using data tables and a Rack server and will eventually have google calendar integration.
 
 The current capabilities of this app include the following:
   - Ingest data from an exported Wireshark packet capture (CSV format is currently the only format supported)

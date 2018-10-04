@@ -1,5 +1,8 @@
-<h5> Welcome to Wifinder </h5>
-
-<a href='/devices'> All Devices </a>
-<br>
-<a href='/ssids'> All SSIDs </a>
+<h1> Welcome to Wifinder </h1>
+<ul>
+  <li> There are <%= Device.count %> devices in the DB. </li>
+  <a href='/devices'> All Devices </a>
+  <br>
+  <li> There are <%= Ssid.count %> ssids in the DB. </li>
+  <a href='/ssids'> All SSIDs </a>
+</ul>

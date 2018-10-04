@@ -15,6 +15,28 @@ class Device
     @mac_addr = row[1]
   end
 
+  def active_hours(day=Time.now.day, month=Time.now.month)
+    Device.db.execute("SELECT DISTINCT hour from
+    activetimes where deviceid = (?) AND day = (?) AND month = (?)", [id, day, month])
+  end
+
+  def all_active_hours
+    Device.db.execute("SELECT DISTINCT hour from
+    activetimes where deviceid = (?)", id)
+  end
+
+  def all_active_hours_for_chart
+    all_active_hours.each_with_index.map do |hour, index|
+      index == 0 ? comma = '' : comma = ','
+      "#{comma}['active', new Date(0,0,0,#{hour.first},0,0), new Date(0,0,0,#{hour.first + 1},0,0)]"
+    end
+  end
+
+  def active_days(month=Time.now.month)
+    Device.db.execute("SELECT DISTINCT day from
+    activetimes where deviceid = (?) AND month = (?)", [id, month]).first
+  end
+
   def ssid_count
     Device.db.execute("SELECT COUNT(DISTINCT devicessids.ssidid) from
     devicessids where deviceid = (?)", id).first.first

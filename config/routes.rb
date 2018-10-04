@@ -1,7 +1,10 @@
 class Routes
   ROUTES = {
+    "/" => :home,
     "/device" => :device,
-    "/devices" => :devices
+    "/devices" => :devices,
+    "/ssid" => :ssid,
+    "/ssids" => :ssids
   }
 
   def initialize(env)

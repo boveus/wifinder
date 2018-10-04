@@ -4,7 +4,7 @@
 <p> MAC: <%= device.mac_addr %> </p>
 SSIDs: <ul>
         <% device.ssids.each do |ssid| %>
-          <li><%= ssid.name %></li>
+          <li><%="<a href='/ssid?#{ssid.id}'> #{ssid.name} </a>"%></li>
         <% end %>
       </ul>
 

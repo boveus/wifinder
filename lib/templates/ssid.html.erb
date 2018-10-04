@@ -1,0 +1,8 @@
+<h1> Ssid Show Page </h1>
+<h3> ID: <%= ssid.id %> </h3>
+<p> SSID: <%= ssid.name %> </p>
+Devices: <ul>
+        <% ssid.devices.each do |device| %>
+          <li> <%="<a href='/device?#{device.id}'> #{device.mac_addr} </a>"%></li>
+        <% end %>
+      </ul>

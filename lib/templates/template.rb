@@ -1,4 +1,5 @@
 require './lib/models/device'
+require './lib/models/ssid'
 class Template
   def initialize(page, data = {})
     @data = data
@@ -7,6 +8,14 @@ class Template
     file = File.join(File.dirname(__FILE__), "#{page}.html.erb")
 
     @template = File.read(file)
+  end
+
+  def ssids
+    Ssid.all
+  end
+
+  def ssid
+    Ssid.find(@data[:id])
   end
 
   def devices

@@ -23,6 +23,14 @@ module PacketIngestionBehavior
     end
   end
 
+  def create_active_time(packet_time, source)
+    data_row = ActiveTime.time_to_a(packet_time)
+    device = Device.find_by(mac_addr: source)
+    data_row.unshift(device.id)
+    @db.execute("INSERT INTO activetimes (deviceID, year, month, day, hour, minute, second)
+              VALUES (?, ?, ?, ?, ?, ?, ?)", data_row)
+  end
+
   def device_doesnt_exist?(mac_addr)
     @db.execute("select * FROM devices WHERE mac_addr = (?)", mac_addr).length == 0
   end

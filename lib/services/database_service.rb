@@ -21,6 +21,7 @@ class DatabaseService
     create_devices_table
     create_ssids_table
     create_device_ssids_table
+    create_active_times_table
   end
 
   def create_devices_table
@@ -62,6 +63,21 @@ class DatabaseService
         protocol varchar,
         info varchar,
         ssid varchar
+      );
+    SQL
+  end
+
+  def create_active_times_table
+    @db.execute <<-SQL
+      create table activetimes (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        deviceID INTEGER REFERENCES devices,
+        year INTEGER,
+        month INTEGER,
+        day INTEGER,
+        hour INTEGER,
+        minute INTEGER,
+        second INTEGER
       );
     SQL
   end

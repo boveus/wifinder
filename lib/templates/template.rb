@@ -1,5 +1,4 @@
 require './lib/models/device'
-require './lib/models/ssid'
 class Template
   def initialize(page, data = {})
     @data = data
@@ -10,12 +9,12 @@ class Template
     @template = File.read(file)
   end
 
-  def ssids
-    Ssid.all
+  def device_count
+    Device.count
   end
 
-  def ssid
-    Ssid.find(@data[:id])
+  def ssid_count
+    Ssid.count
   end
 
   def devices

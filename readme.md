@@ -10,8 +10,7 @@ The current capabilities of this app include the following:
     ![capture](https://user-images.githubusercontent.com/20469703/46324369-2bdc0680-c5c1-11e8-8488-c38638cda6f2.PNG)
   - View details about an individual device:
   
-    ![image](https://user-images.githubusercontent.com/20469703/46447274-d0d81a00-c74e-11e8-835f-5e25c7237ee9.png)
-  
+    ![image](https://user-images.githubusercontent.com/20469703/46447342-2f04fd00-c74f-11e8-8c6b-6f81a5b6872b.png)
 
 For the time being this is intended to passively monitor traffic rather than use packet injection to generate additional traffic.  I am also challenging myself to limit the number of dependencies as much as possible.
 

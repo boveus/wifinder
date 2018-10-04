@@ -13,6 +13,7 @@ The current capabilities of this app include the following:
   - View details about an individual device:
    ![image](https://user-images.githubusercontent.com/20469703/46448389-940f2180-c754-11e8-8cca-b15d5a7f6d3e.png)
   - View details about a particular SSID:
+  
   ![image](https://user-images.githubusercontent.com/20469703/46448430-cb7dce00-c754-11e8-983d-de3de2f9e187.png)
 
 The SSID and Devices views reference one another, so you can view details about the SSIDs associated with a particular device and vice versa.

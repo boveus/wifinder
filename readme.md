@@ -8,9 +8,14 @@ The current capabilities of this app include the following:
   - Ingest data and add it to the database on the fly using a rake task that runs [tshark](https://www.wireshark.org/docs/man-pages/tshark.html)
   - View and search a list of all of the devices in a datatables view:
     ![capture](https://user-images.githubusercontent.com/20469703/46324369-2bdc0680-c5c1-11e8-8488-c38638cda6f2.PNG)
+  - View and search a list of all of the SSIDs in a datatables view:
+  ![image](https://user-images.githubusercontent.com/20469703/46448418-bdc84880-c754-11e8-8fe5-ce48317c9915.png)
   - View details about an individual device:
-  
-    ![image](https://user-images.githubusercontent.com/20469703/46447342-2f04fd00-c74f-11e8-8c6b-6f81a5b6872b.png)
+   ![image](https://user-images.githubusercontent.com/20469703/46448389-940f2180-c754-11e8-8cca-b15d5a7f6d3e.png)
+  - View details about a particular SSID:
+  ![image](https://user-images.githubusercontent.com/20469703/46448430-cb7dce00-c754-11e8-983d-de3de2f9e187.png)
+
+The SSID and Devices views reference one another, so you can view details about the SSIDs associated with a particular device and vice versa.
 
 For the time being this is intended to passively monitor traffic rather than use packet injection to generate additional traffic.  I am also challenging myself to limit the number of dependencies as much as possible.
 
@@ -74,7 +79,7 @@ The project organization is influenced by the [MVC model](https://en.wikipedia.o
 There are several directories with various types of objects in them:
 - Models: This folder contains the ORM objects (Device, Packet, Ssid, ActiveTime so far)
 - Services: These objects do various tasks behind the scenes.
-- Templates: These contain ERB files for how to format the views. 
+- Templates: These contain ERB files for how to format the views for the index / show pages for the models. 
 
 ## Rake Tasks ##
 

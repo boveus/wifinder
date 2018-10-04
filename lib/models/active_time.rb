@@ -1,3 +1,4 @@
+require './lib/models/model_methods'
 class ActiveTime
   KLASSNAME = 'ActiveTime'
   TABLE_NAME = 'activetimes'

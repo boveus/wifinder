@@ -41,7 +41,8 @@ class PacketStreamIngestor
   def ingest_from_stream(stream_row)
     packet = create_packet_from_stream(stream_row)
     if packet
-      create_packet(packet)
+      # Skip this for now
+      # create_packet(packet)
       device = create_device(packet.source)
       create_ssid(packet.ssid)
       create_device_ssid(packet.source, packet.ssid)

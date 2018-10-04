@@ -1,4 +1,4 @@
-
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <h1> Device Show Page </h1>
 <h3> ID: <%= device.id %> </h3>
 <p> MAC: <%= device.mac_addr %> </p>
@@ -7,3 +7,31 @@ SSIDs: <ul>
           <li><%= ssid.name %></li>
         <% end %>
       </ul>
+
+      <div id="time_chart" style="width: 80%"></div>
+
+
+<script>
+  google.charts.load("current", {packages:["timeline"]});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var container = document.getElementById('time_chart');
+      var chart = new google.visualization.Timeline(container);
+      var dataTable = new google.visualization.DataTable();
+      dataTable.addColumn({ type: 'string', id: 'active' });
+      dataTable.addColumn({ type: 'date', id: 'Start' });
+      dataTable.addColumn({ type: 'date', id: 'End' });
+      dataTable.addRows([
+        <% device.all_active_hours_for_chart.each do |hours| %>
+        <%= hours %>
+        <% end %>]);
+
+      var options = {
+        timeline: { showRowLabels: false },
+        avoidOverlappingGridLines: false,
+      };
+
+      chart.draw(dataTable, options);
+    }
+
+</script>

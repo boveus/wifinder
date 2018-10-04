@@ -4,8 +4,8 @@
 This is a project to use Wireshark to capture packets and view some analysis about them in an html page.  There is currently a simple JS front end using data tables and a Rack server and will eventually have google calendar integration.
 
 The current capabilities of this app include the following:
-  - Ingest data from an exported Wireshark packet capture (CSV format is currently the only format supported)
-  - Ingest data and add it to the database on the fly using a rake task that runs [tshark](https://www.wireshark.org/docs/man-pages/tshark.html)
+  - Ingest data into SQL from an exported Wireshark packet capture (CSV format is currently the only format supported)
+  - Ingest data and add it to a SQL database on the fly using a rake task that runs [tshark](https://www.wireshark.org/docs/man-pages/tshark.html)
   - View and search a list of all of the devices in a datatables view:
     ![capture](https://user-images.githubusercontent.com/20469703/46324369-2bdc0680-c5c1-11e8-8488-c38638cda6f2.PNG)
   - View and search a list of all of the SSIDs in a datatables view:

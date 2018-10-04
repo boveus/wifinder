@@ -16,7 +16,7 @@ The current capabilities of this app include the following:
   
   ![image](https://user-images.githubusercontent.com/20469703/46448430-cb7dce00-c754-11e8-983d-de3de2f9e187.png)
 
-The SSID and Devices views reference one another, so you can view details about the SSIDs associated with a particular device and vice versa.
+The SSID and Devices views refer one another, so you can view details about the SSIDs associated with a particular device and vice versa.
 
 For the time being this is intended to passively monitor traffic rather than use packet injection to generate additional traffic.  I am also challenging myself to limit the number of dependencies as much as possible.
 

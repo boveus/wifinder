@@ -10,7 +10,7 @@ The current capabilities of this app include the following:
     ![capture](https://user-images.githubusercontent.com/20469703/46324369-2bdc0680-c5c1-11e8-8488-c38638cda6f2.PNG)
   - View and search a list of all of the SSIDs in a datatables view:
   ![image](https://user-images.githubusercontent.com/20469703/46448418-bdc84880-c754-11e8-8fe5-ce48317c9915.png)
-  - View details about an individual device:
+  - View details about an individual device (Including a Google charts view of hours it has been detected):
    ![image](https://user-images.githubusercontent.com/20469703/46448389-940f2180-c754-11e8-8cca-b15d5a7f6d3e.png)
   - View details about a particular SSID:
   

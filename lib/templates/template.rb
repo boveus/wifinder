@@ -17,6 +17,14 @@ class Template
     Ssid.count
   end
 
+  def ssids
+    Ssid.all
+  end
+
+  def ssid
+    Ssid.find(@data[:id])
+  end
+
   def devices
     Device.all
   end

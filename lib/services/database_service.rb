@@ -67,6 +67,17 @@ class DatabaseService
     SQL
   end
 
+  def create_people_table
+    @db.execute <<-SQL
+      create table people (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nickname varchar,
+        persondevicesID INTEGER REFERENCES persondevices,
+        personssidsID INTEGER REFERENCES personssids
+      );
+    SQL
+  end
+
   def create_active_times_table
     @db.execute <<-SQL
       create table activetimes (

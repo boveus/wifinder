@@ -28,6 +28,17 @@ For the time being this is intended to passively monitor traffic rather than use
 - I tested this in Ubuntu 16.04
 - Wireshark (Available at https://www.wireshark.org/)
 
+## Dependencies ##
+### Ruby
+- sqlite3 gem
+- minitest gem
+### External
+- Datatables
+- Sqlite3
+- Wireshark
+
+Big shout out to this site: http://youmightnotneedjquery.com/
+
 # Getting Started #
 Identify the wireless interface you want to set to monitor mode using `ip a` or `ifconfig`.
 Set the device to monitor mode using the following commands

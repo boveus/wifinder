@@ -18,7 +18,16 @@ class PacketIngestor
   def ingest
     @packets.each do |packet|
       create_packet(packet)
-      device = create_device(packet.source)
+      create_device(packet.source)
+      create_ssid(packet.ssid)
+      create_device_ssid(packet.source, packet.ssid)
+      create_active_time(packet.capturetime, packet.source)
+    end
+  end
+
+  def ingest_without_packets
+    @packets.each do |packet|
+      create_device(packet.source)
       create_ssid(packet.ssid)
       create_device_ssid(packet.source, packet.ssid)
       create_active_time(packet.capturetime, packet.source)

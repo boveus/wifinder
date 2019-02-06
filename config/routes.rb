@@ -4,7 +4,8 @@ class Routes
     "/device" => :device,
     "/devices" => :devices,
     "/ssid" => :ssid,
-    "/ssids" => :ssids
+    "/ssids" => :ssids,
+    "/people" => :people
   }
 
   def initialize(env)

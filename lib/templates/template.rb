@@ -1,9 +1,9 @@
 require './lib/models/device'
+require './lib/models/person'
 class Template
   def initialize(page, data = {})
     @data = data
     @page = page
-
     file = File.join(File.dirname(__FILE__), "#{page}.html.erb")
 
     @template = File.read(file)
@@ -27,6 +27,10 @@ class Template
 
   def devices
     Device.all
+  end
+
+  def all_people
+    Person.all_nicknames
   end
 
   def device

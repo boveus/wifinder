@@ -22,6 +22,10 @@ class Person
     end
   end
 
+  def self.all_nicknames
+    db.execute("SELECT nickname FROM people").flatten
+  end
+
   def add_device(device)
     return false unless device.class == Device
     Person.db.execute("INSERT INTO peopledevices (personID, deviceID) VALUES (?, ?)", [id, device.id])

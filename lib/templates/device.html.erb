@@ -2,6 +2,17 @@
 <h1> Device Show Page </h1>
 <h3> ID: <%= device.id %> </h3>
 <p> MAC: <%= device.mac_addr %> </p>
+<form action="/people">
+  <select name="new_person">
+      <option value='new'> New Person </option>
+    <% all_people.each do |person| %>
+      <option value="<%= person %>"><%= person %></option>
+    <% end %>
+  </select>
+  <br><br>
+  <input type="submit" value='Associate Device to Person'>
+
+</form>
 SSIDs: <ul>
         <% device.ssids.each do |ssid| %>
           <li><%="<a href='/ssid?#{ssid.id}'> #{ssid.name} </a>"%></li>

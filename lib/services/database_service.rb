@@ -19,6 +19,8 @@ class DatabaseService
   def migrate
     create_packets_table
     create_devices_table
+    create_people_table
+    create_people_devices_table
     create_ssids_table
     create_device_ssids_table
     create_active_times_table
@@ -63,6 +65,25 @@ class DatabaseService
         protocol varchar,
         info varchar,
         ssid varchar
+      );
+    SQL
+  end
+
+  def create_people_devices_table
+    @db.execute <<-SQL
+      create table peopledevices (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        deviceID INTEGER REFERENCES devices,
+        personID INTEGER REFERENCES people
+      );
+    SQL
+  end
+
+  def create_people_table
+    @db.execute <<-SQL
+      create table people (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nickname varchar
       );
     SQL
   end

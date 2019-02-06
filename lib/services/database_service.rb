@@ -83,8 +83,7 @@ class DatabaseService
     @db.execute <<-SQL
       create table people (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nickname varchar,
-        persondevicesID INTEGER REFERENCES peopledevices
+        nickname varchar
       );
     SQL
   end

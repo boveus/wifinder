@@ -1,9 +1,13 @@
 require './lib/models/model_methods'
+require './lib/models/device'
 
 class Person
   KLASSNAME = 'Person'
   TABLE_NAME = 'people'
   include ModelMethods
+
+  attr_accessor :id,
+                :nickname
 
   def initialize(data)
     @id = data[0]
@@ -15,6 +19,21 @@ class Person
       'A record with that nickname exists'
     else
       db.execute("INSERT INTO people (nickname) VALUES (?);", attributes[:nickname])
+    end
+  end
+
+  def add_device(device)
+    return false unless device.class == Device
+    Person.db.execute("INSERT INTO peopledevices (personID, deviceID) VALUES (?, ?)", [id, device.id])
+    devices
+  end
+
+  def devices
+    device_rows = Person.db.execute("SELECT * FROM devices
+      WHERE id IN
+      (SELECT deviceid FROM peopledevices WHERE personid = (?))", id)
+    device_rows.map do |row|
+      Device.new(row)
     end
   end
 end

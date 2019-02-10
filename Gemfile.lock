@@ -1,7 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    csv (3.0.0)
     minitest (5.11.3)
     sqlite3 (1.3.13)
 
@@ -9,9 +8,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  csv
   minitest
   sqlite3
 
 BUNDLED WITH
-   1.16.2
+   1.17.2

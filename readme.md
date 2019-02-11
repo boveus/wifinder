@@ -13,7 +13,7 @@ The current capabilities of this app include the following:
   - View details about an individual device (Including a Google charts view of hours it has been detected):
    ![image](https://user-images.githubusercontent.com/20469703/46448389-940f2180-c754-11e8-8cca-b15d5a7f6d3e.png)
   - View details about a particular SSID:
-  
+
   ![image](https://user-images.githubusercontent.com/20469703/46448430-cb7dce00-c754-11e8-983d-de3de2f9e187.png)
 
 The SSID and Devices views refer one another, so you can view details about the SSIDs associated with a particular device and vice versa.
@@ -24,7 +24,7 @@ For the time being this is intended to passively monitor traffic rather than use
 - A network interface [card](https://www.acrylicwifi.com/en/support-webinars-wifi-wireless-network-software-tools/compatible-hardware/) capable of [monitor mode](https://en.wikipedia.org/wiki/Monitor_mode)
 
 ## Pre-requistite Software ##
-- Some version of linux/unix. (Monitoring mode for WiFi NICs is not well supported in OSX/Windows) 
+- Some version of linux/unix. (Monitoring mode for WiFi NICs is not well supported in OSX/Windows)
 - I tested this in Ubuntu 16.04
 - Wireshark (Available at https://www.wireshark.org/)
 
@@ -42,6 +42,12 @@ Big shout out to this site: http://youmightnotneedjquery.com/
 # Getting Started #
 Identify the wireless interface you want to set to monitor mode using `ip a` or `ifconfig`.
 Set the device to monitor mode using the following commands
+```bash
+`sudo ip link set <interface> down`
+`sudo iwconfig <interface> mode monitor`
+`sudo ip link set <interface> up`
+```
+`ifconfig` is a deprecated tool, but it is still available in some linux distros and does the same thing:
 ```bash
 sudo ifconfig <interface> down
 sudo iwconfig <interface> mode monitor
@@ -91,7 +97,7 @@ The project organization is influenced by the [MVC model](https://en.wikipedia.o
 There are several directories with various types of objects in them:
 - Models: This folder contains the ORM objects (Device, Packet, Ssid, ActiveTime so far)
 - Services: These objects do various tasks behind the scenes.
-- Templates: These contain ERB files for how to format the views for the index / show pages for the models. 
+- Templates: These contain ERB files for how to format the views for the index / show pages for the models.
 
 ## Rake Tasks ##
 

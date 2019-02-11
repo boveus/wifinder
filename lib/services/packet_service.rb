@@ -4,8 +4,8 @@ require './lib/models/packet'
 
 class PacketService
   attr_reader :packets
-  def initialize
-    @path = './data'
+  def initialize(csv_path = false)
+    @path = csv_path || './data'
     @packets = []
     @count = 0
     parse_packet_csvs

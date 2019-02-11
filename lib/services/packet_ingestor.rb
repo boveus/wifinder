@@ -10,8 +10,8 @@ require 'pry'
 class PacketIngestor
   include PacketIngestionBehavior
 
-  def initialize
-    @packets = PacketService.new.packets
+  def initialize(csv_path = false)
+    @packets = PacketService.new(csv_path).packets
     @db = SQLite3::Database.new("./db/wifinder.db")
   end
 

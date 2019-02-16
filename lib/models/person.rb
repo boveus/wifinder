@@ -22,6 +22,10 @@ class Person
     end
   end
 
+  def self.destroy(id)
+    db.execute("DELETE FROM people WHERE id = (?);", id)
+  end
+
   def self.all_nicknames
     db.execute("SELECT nickname FROM people").flatten
   end

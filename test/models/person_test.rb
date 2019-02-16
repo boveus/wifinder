@@ -4,9 +4,6 @@ require './lib/models/person'
 require 'pry'
 
 class PersonTest < Minitest::Test
-  def create_person
-  end
-
   def test_a_person_can_have_devices
     Person.create(nickname: 'test_person')
     person = Person.all.first

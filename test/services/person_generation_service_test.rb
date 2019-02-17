@@ -8,6 +8,6 @@ class PacketServiceTest < Minitest::Test
 
     PersonGenerationService.generate_people
 
-    assert_equal 2, Person.all.count
+    assert_equal 6, Person.all.count
   end
 end

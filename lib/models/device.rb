@@ -1,7 +1,5 @@
 require 'sqlite3'
 require './lib/models/model_methods'
-require './lib/models/packet'
-require './lib/models/ssid'
 
 class Device
   KLASSNAME = 'Device'

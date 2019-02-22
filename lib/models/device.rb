@@ -36,6 +36,17 @@ class Device
     activetimes where deviceid = (?) AND month = (?)", [id, month]).first
   end
 
+  def interesting_devices
+    Device.db.execute("SELECT * FROM devices WHERE id IN
+      (SELECT deviceid FROM devicessids HAVING count(deviceid) > 5)")
+  end
+
+  def add_ssid(ssid)
+    return false unless ssid.class == Ssid
+    Device.db.execute("INSERT INTO devicessids (deviceID, ssidID) VALUES (?, ?)", [id, ssid.id])
+    ssids
+  end
+
   def ssid_count
     Device.db.execute("SELECT COUNT(DISTINCT devicessids.ssidid) from
     devicessids where deviceid = (?)", id).first.first

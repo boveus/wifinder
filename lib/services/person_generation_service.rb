@@ -1,9 +1,4 @@
-require './lib/models/device'
 require './lib/models/ssid'
-require './lib/models/active_time'
-require 'sqlite3'
-require 'pry'
-
 class PersonGenerationService
   attr_reader :db
 
@@ -11,7 +6,15 @@ class PersonGenerationService
     @db = SQLite3::Database.new("./db/wifinder.db")
   end
 
-  def self.generate_people
-    binding.pry
+  def self.generate_people(number = 1)
+    Ssid.all.each do |ssid|
+      nickname = "Person-#{number}"
+      Person.create(nickname: nickname)
+      person = Person.find_by(nickname: nickname)
+      ssid.devices.each do |device|
+        person.add_device(device)
+      end
+      number += 1
+    end
   end
 end

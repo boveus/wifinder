@@ -28,6 +28,16 @@ module ModelMethods
       result.first ? self.new(result.first) : false
     end
 
+    def destroy(id)
+      query_string = "?"
+      if id.count > 1
+        id.count.times do
+          query_string += ", ?"
+        end
+      end
+      db.execute("DELETE FROM #{table_name} WHERE id IN (#{query_string});", id)
+    end
+
     # example arguments={source: "Microsof_bd:8f:f3"}
     # This should be improved to account for multiple arguments
     def find_by(arguments)

@@ -20,8 +20,9 @@ class PersonTest < Minitest::Test
 
   def test_a_device_returns_interesting_devices
     ids = create_ssids
+    device = Device.find(1)
 
-    binding.pry
+    assert_equal Device.interesting_devices.first.mac_addr, device.mac_addr
 
     Ssid.destroy(ids)
   end

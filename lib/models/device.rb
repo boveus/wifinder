@@ -36,9 +36,10 @@ class Device
     activetimes where deviceid = (?) AND month = (?)", [id, month]).first
   end
 
-  def interesting_devices
-    Device.db.execute("SELECT * FROM devices WHERE id IN
-      (SELECT deviceid FROM devicessids HAVING count(deviceid) > 5)")
+  def self.interesting_devices
+    Device.db.execute("SELECT deviceid, COUNT(deviceid) as ssidcount FROM devicessids GROUP by deviceid HAVING ssidcount > 5").map do |result|
+      Device.find(result[0])
+    end
   end
 
   def add_ssid(ssid)

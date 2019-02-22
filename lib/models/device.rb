@@ -1,7 +1,5 @@
 require 'sqlite3'
 require './lib/models/model_methods'
-require './lib/models/packet'
-require './lib/models/ssid'
 
 class Device
   KLASSNAME = 'Device'
@@ -36,6 +34,18 @@ class Device
   def active_days(month=Time.now.month)
     Device.db.execute("SELECT DISTINCT day from
     activetimes where deviceid = (?) AND month = (?)", [id, month]).first
+  end
+
+  def self.interesting_devices
+    Device.db.execute("SELECT deviceid, COUNT(deviceid) as ssidcount FROM devicessids GROUP by deviceid HAVING ssidcount > 5").map do |result|
+      Device.find(result[0])
+    end
+  end
+
+  def add_ssid(ssid)
+    return false unless ssid.class == Ssid
+    Device.db.execute("INSERT INTO devicessids (deviceID, ssidID) VALUES (?, ?)", [id, ssid.id])
+    ssids
   end
 
   def ssid_count

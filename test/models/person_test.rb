@@ -1,5 +1,4 @@
 require 'minitest/autorun'
-require './lib/services/packet_service'
 require './lib/models/person'
 require 'pry'
 

@@ -12,14 +12,14 @@ class Packet
                    :info,
                    :ssid
 
-  def initialize(data)
-    @id = data[:id]
-    @capturetime = data[:time]
-    @source = data[:source]
-    @destination = data[:destination]
-    @protocol = data[:protocol]
-    @info = data[:info]
-    @ssid = data[:info].split('=').last
+  def initialize(row)
+    @id = row[0]
+    @capturetime = row[1]
+    @source = row[2]
+    @destination = row[3]
+    @protocol = row[4]
+    @info = row[6]
+    @ssid = row[6].split('=').last
   end
 
   def self.create_from_row(row)
@@ -40,7 +40,7 @@ class Packet
   # todo: refactor this to behave like the other models and get rid of this.
   def self.find(id)
     result = db.execute("select * FROM #{table_name} WHERE id = (?)", id)
-    result.first ? self.create_from_row(result.first) : false
+    result.first ? self.new(result.first) : false
   end
 
   def self.all

@@ -17,12 +17,8 @@ class PacketStreamIngestor
   def clean_stream_for_packet(stream_row)
     clean_line = stream_row.split("\t")
     if clean_line.length > 4
-      clean_line[2] = clean_line[2][0..-3]
-      clean_line[3] = clean_line[3][0..-4]
-      # This isn't a typo.  The Packet model is looking for the SSID info in
-      # indice 5, rather than indice 6.  The CSV export is formatted differecntly
-      # than the tshark import.
-      clean_line[5] = clean_line[6].strip
+      clean_line[0] = clean_line[0].to_i
+      clean_line.delete_at(3)
       return clean_line
     else
       return false
@@ -32,7 +28,7 @@ class PacketStreamIngestor
   def create_packet_from_stream(stream_row)
     data_row = clean_stream_for_packet(stream_row)
     if data_row
-      return Packet.create_from_row(data_row)
+      return Packet.new(data_row)
     else
       return false
     end

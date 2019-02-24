@@ -36,7 +36,7 @@ class Device
     activetimes where deviceid = (?) AND month = (?)", [id, month]).first
   end
 
-  def self.interesting_devices
+  def self.more_than_five_ssids
     Device.db.execute("SELECT deviceid, devices.mac_addr, COUNT(deviceid) as ssidcount FROM devicessids
     INNER JOIN devices ON devices.id = devicessids.deviceID
     GROUP by deviceid HAVING ssidcount > 5").map do |result|

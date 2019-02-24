@@ -22,15 +22,6 @@ class Packet
     @ssid = row[6]&.split('=').last || nil
   end
 
-  def self.create_from_row(row)
-    Packet.new(
-        { time: row[1],
-        source: row[2],
-        destination: row[3],
-        protocol: row[4],
-        info: row[5] })
-  end
-
   def self.last_id
     db.execute("SELECT rowid from packets order by ROWID DESC limit 1")
   end

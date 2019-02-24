@@ -14,12 +14,18 @@ class Person
     @nickname = data[1]
   end
 
+  def self.find_or_create_by(attributes)
+    Person.find_by(attributes) || Person.create(attributes)
+  end
+
   def self.create(attributes)
     if find_by(nickname: attributes[:nickname])
       'A record with that nickname exists'
     else
       db.execute("INSERT INTO people (nickname) VALUES (?);", attributes[:nickname])
     end
+    data = db.execute("SELECT * FROM people where nickname = (?);", attributes[:nickname]).first
+    Person.new(data)
   end
 
   def self.all_nicknames

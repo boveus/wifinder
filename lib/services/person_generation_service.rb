@@ -7,13 +7,10 @@ class PersonGenerationService
   end
 
   def self.generate_people(number = 1)
-    Ssid.all.each do |ssid|
+    Device.more_than_five_ssids.each do |device|
       nickname = "Person-#{number}"
-      Person.create(nickname: nickname)
-      person = Person.find_by(nickname: nickname)
-      ssid.devices.each do |device|
-        person.add_device(device)
-      end
+      person = Person.find_or_create_by(nickname: nickname)
+      person.add_device(device)
       number += 1
     end
   end

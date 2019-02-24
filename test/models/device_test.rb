@@ -26,4 +26,18 @@ class PersonTest < Minitest::Test
 
     Ssid.destroy(ids)
   end
+
+  def test_ssid_count_for_all_devices
+    ids = create_ssids
+    devices = Device.ssid_count_for_all_devices
+    device_one_entry = devices.detect { |device| device.first.id == 1}
+    device = Device.find(1)
+
+    assert_equal devices.count, 10
+    assert_equal device_one_entry[0].id, device.id
+    assert_equal device_one_entry[1], device.ssid_count
+
+
+    Ssid.destroy(ids)
+  end
 end

@@ -30,7 +30,7 @@ module ModelMethods
 
     def destroy(id)
       query_string = "?"
-      if id.count > 1
+      if id.class == Array && id.count > 1
         id.count.times do
           query_string += ", ?"
         end

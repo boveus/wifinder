@@ -1,5 +1,7 @@
 require './lib/models/device'
 require './lib/models/person'
+require './lib/models/ssid'
+
 class Template
   def initialize(page, data = {})
     @data = data

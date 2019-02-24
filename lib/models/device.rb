@@ -37,8 +37,10 @@ class Device
   end
 
   def self.interesting_devices
-    Device.db.execute("SELECT deviceid, COUNT(deviceid) as ssidcount FROM devicessids GROUP by deviceid HAVING ssidcount > 5").map do |result|
-      Device.find(result[0])
+    Device.db.execute("SELECT deviceid, devices.mac_addr, COUNT(deviceid) as ssidcount FROM devicessids
+    INNER JOIN devices ON devices.id = devicessids.deviceID
+    GROUP by deviceid HAVING ssidcount > 5").map do |result|
+      Device.new([result[0], result[1]])
     end
   end
 

@@ -19,7 +19,7 @@ class Packet
     @destination = row[3]
     @protocol = row[4]
     @info = row[6]
-    @ssid = row[6].split('=').last
+    @ssid = row[6]&.split('=').last || nil
   end
 
   def self.create_from_row(row)
@@ -33,24 +33,6 @@ class Packet
 
   def self.last_id
     db.execute("SELECT rowid from packets order by ROWID DESC limit 1")
-  end
-
-  # find is different for packets, because it is created from a Hash
-  # instead of from an array like the other models.
-  # todo: refactor this to behave like the other models and get rid of this.
-  def self.find(id)
-    result = db.execute("select * FROM #{table_name} WHERE id = (?)", id)
-    result.first ? self.new(result.first) : false
-  end
-
-  def self.all
-    db.execute("select * from packets" ).map do |row|
-      Packet.create_from_row(row)
-    end
-  end
-
-  def self.count
-    db.execute("select COUNT(*) from packets")[0][0]
   end
 
   def to_a

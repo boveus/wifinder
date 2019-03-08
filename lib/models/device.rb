@@ -14,6 +14,16 @@ class Device
     @mac_addr = row[1]
   end
 
+  def self.create(attributes)
+    if find_by(mac_addr: attributes[:mac_addr])
+      'A record with that nickname exists'
+    else
+      db.execute("INSERT INTO devices (mac_addr) VALUES (?);", [attributes[:mac_addr]])
+      device = Device.find(db.last_insert_row_id)
+      device ? device : false
+    end
+  end
+
   def active_hours(day=Time.now.day, month=Time.now.month)
     Device.db.execute("SELECT DISTINCT hour from
     activetimes where deviceid = (?) AND day = (?) AND month = (?)", [id, day, month])

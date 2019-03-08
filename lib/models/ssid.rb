@@ -26,6 +26,20 @@ class Ssid
     end
   end
 
+  def self.more_than_five_devices
+    Ssid.db.execute("SELECT ssidid, ssids.name, COUNT(ssidid) as ssidcount FROM devicessids
+    INNER JOIN ssids ON ssids.id = devicessids.ssidID
+    GROUP by ssidid HAVING ssidcount > 5").map do |result|
+      Ssid.new([result[0], result[1]])
+    end
+  end
+
+  def add_device(device)
+    return false unless device.class == Device
+    Ssid.db.execute("INSERT INTO devicessids (ssidID, deviceID) VALUES (?, ?)", [id, device.id])
+    devices
+  end
+
   def device_count
     Ssid.db.execute("SELECT COUNT(DISTINCT devicessids.deviceid) from
     devicessids where ssidid = (?)", id).first.first

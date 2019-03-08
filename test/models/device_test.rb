@@ -3,7 +3,7 @@ require './lib/models/device'
 require './test/helpers/test_helper'
 require 'pry'
 
-class PersonTest < Minitest::Test
+class DeviceTest < Minitest::Test
   include TestHelper
 
   def test_a_device_returns_devices_with_more_than_five_ssids

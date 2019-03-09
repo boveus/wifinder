@@ -1,6 +1,8 @@
+require 'yaml'
+
 desc 'Usage: interface=wlan1 rake set_to_monitor | set the device to monitor mode'
 task :set_to_monitor do
-  interface = "#{ENV["interface"]}"
+  interface = "#{ENV["interface"]}" || YAML.load(File.read('config/config.yml'))['device']
   unless interface.empty?
     puts 'Taking interface down...'
     `sudo ip link set #{interface} down`

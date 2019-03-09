@@ -7,3 +7,4 @@ lib/views/home.html
 
 # Ignore application configuration
 /config/application.yml
+/config/config.yml

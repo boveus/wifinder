@@ -7,7 +7,7 @@ require './lib/services/packet_stream_ingestor'
 desc 'start capturing packets (device must be in monitor mode)'
 task :capture do
   psi = PacketStreamIngestor.new
-  interface = "#{ENV["interface"]}" || YAML.load(File.read('config/config.yml'))['device']
+  interface = "#{ENV["interface"]}".empty? ? YAML.load(File.read('./config/config.yml'))['device'] : "#{ENV["interface"]}"
   cmd = "tshark -i #{interface} -f 'subtype probereq' -t ad -T tabs -o nameres.mac_name:FALSE"
   # -f specifies it to only capture using the specified filter (probe requests)
   # -t ad specifies to use the absolute time with a date added

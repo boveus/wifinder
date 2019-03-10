@@ -1,13 +1,14 @@
-<h1> Welcome to Wifinder </h1>
-<ul>
-  <li> There are <%= Device.count %> devices in the DB. </li>
-  <a href='/devices'> All Devices </a>
-  <br>
-  <li> There are <%= Ssid.count %> ssids in the DB. </li>
-  <a href='/ssids'> All SSIDs </a>
-  <li> There are <%= Device.more_than_five_ssids.count %> device with more than 5 SSIDs in the DB. </li>
-  <a href='/multidevices'> Devices with more than 5 SSIDs </a>
-  <br>
-  <li> There are <%= Ssid.more_than_five_devices.count %> ssids with more than 5 devices in the DB. </li>
-  <a href='/multissids'> SSIDs with more than 5 devices </a>
-</ul>
+<%= head %>
+
+<h1 class=<%= header_classes %>> Welcome to Wifinder </h1>
+<p class=<%= p_classes %>> There are <strong><%= Device.count %></strong> unique devices in the DB. </p>
+<p class=<%= p_classes %>> There are <strong><%= Ssid.count %></strong> unique SSIDs in the DB. <p>
+<p class=<%= p_classes %>> There are <strong><%= Device.more_than_five_ssids.count %></strong> device with more than 5 SSIDs in the DB. </p>
+<p class=<%= p_classes %>> There are <strong><%= Ssid.more_than_five_devices.count %></strong> SSIDs with more than 5 devices in the DB. </p>
+
+<div class="inline-flex pt-5">
+  <%= button_to("/devices", "All Devices") %>
+  <%= button_to("/ssids", "All SSIDs") %>
+  <%= button_to("/multidevices", "Devices with more than 5 SSIDs") %>
+  <%= button_to("/multissids", "SSIDs with more than 5 devices") %>
+</div>

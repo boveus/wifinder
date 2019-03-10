@@ -1,8 +1,10 @@
 require './lib/models/device'
 require './lib/models/person'
 require './lib/models/ssid'
+require './lib/templates/styling_methods'
 
 class Template
+  include StylingMethods
   def initialize(page, data = {})
     @data = data
     @page = page

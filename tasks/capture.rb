@@ -8,6 +8,7 @@ desc 'start capturing packets (device must be in monitor mode)'
 task :capture do
   psi = PacketStreamIngestor.new
   interface = "#{ENV["interface"]}".empty? ? YAML.load(File.read('./config/config.yml'))['device'] : "#{ENV["interface"]}"
+  verbose = "#{ENV["verbosity"]}".to_s.downcase == 'true'
   cmd = "tshark -i #{interface} -f 'subtype probereq' -t ad -T tabs -o nameres.mac_name:FALSE"
   # -f specifies it to only capture using the specified filter (probe requests)
   # -t ad specifies to use the absolute time with a date added
@@ -19,6 +20,9 @@ task :capture do
       begin
         stdout.each do |line|
           psi.ingest_from_stream(line)
+          if verbose
+            puts line
+          end
         end
       rescue Errno::EIO
         puts "I tried to capture using the device #{interface}.  Is this correct?"

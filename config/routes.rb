@@ -7,7 +7,8 @@ class Routes
     "/ssid" => :ssid,
     "/ssids" => :ssids,
     "/multissids" => :multissids,
-    "/people" => :people
+    "/people" => :people,
+    "/styles" => :styles
   }
 
   def initialize(env)

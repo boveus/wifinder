@@ -1,30 +1,14 @@
 <%= head %>
 
-<h1 class="text-5x1 font-mono text-grey-darkest text-center pb-5"> Welcome to Wifinder </h1>
-<p class="text-5x1 font-mono text-grey-darkest"> There are <strong><%= Device.count %></strong> unique devices in the DB. </p>
-<p class="text-5x1 font-mono text-grey-darkest"> There are <strong><%= Ssid.count %></strong> unique SSIDs in the DB. <p>
-<p class="text-5x1 font-mono text-grey-darkest"> There are <strong><%= Device.more_than_five_ssids.count %></strong> device with more than 5 SSIDs in the DB. </p>
-<p class="text-5x1 font-mono text-grey-darkest"> There are <strong><%= Ssid.more_than_five_devices.count %></strong> SSIDs with more than 5 devices in the DB. </p>
+<h1 class=<%= header_classes %>> Welcome to Wifinder </h1>
+<p class=<%= p_classes %>> There are <strong><%= Device.count %></strong> unique devices in the DB. </p>
+<p class=<%= p_classes %>> There are <strong><%= Ssid.count %></strong> unique SSIDs in the DB. <p>
+<p class=<%= p_classes %>> There are <strong><%= Device.more_than_five_ssids.count %></strong> device with more than 5 SSIDs in the DB. </p>
+<p class=<%= p_classes %>> There are <strong><%= Ssid.more_than_five_devices.count %></strong> SSIDs with more than 5 devices in the DB. </p>
 
 <div class="inline-flex pt-5">
-  <a href='/devices'>
-    <button class="bg-white hover:bg-grey-lightest text-grey-darkest font-semibold py-2 px-4 border border-grey-light rounded shadow">
-      All Devices
-    </button>
-  </a>
-  <a href='/ssids'>
-    <button class="bg-white hover:bg-grey-lightest text-grey-darkest font-semibold py-2 px-4 border border-grey-light rounded shadow">
-      All SSIDs
-    </button>
-  </a>
-  <a href='/multidevices'>
-    <button class="bg-white hover:bg-grey-lightest text-grey-darkest font-semibold py-2 px-4 border border-grey-light rounded shadow">
-      Devices with more than 5 SSIDs
-    </button>
-  </a>
-  <a href='/multissids'>
-    <button class="bg-white hover:bg-grey-lightest text-grey-darkest font-semibold py-2 px-4 border border-grey-light rounded shadow">
-       SSIDs with more than 5 devices
-    </button>
-  </a>
+  <%= button_to("/devices", "All Devices") %>
+  <%= button_to("/ssids", "All SSIDs") %>
+  <%= button_to("/multidevices", "Devices with more than 5 SSIDs") %>
+  <%= button_to("/multissids", "SSIDs with more than 5 devices") %>
 </div>

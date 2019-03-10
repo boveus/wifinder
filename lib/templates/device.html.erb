@@ -1,7 +1,8 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<h1> Device Show Page </h1>
-<h3> ID: <%= device.id %> </h3>
-<p> MAC: <%= device.mac_addr %> </p>
+<%= head %>
+<h1 class=<%= header_classes %>> Device Show Page for <%= device.id %> </h1>
+<p class=<%= p_classes %>> MAC: <%= device.mac_addr %> </p>
+
 <form action="/people">
   <select name="new_person">
       <option value='new'> New Person </option>
@@ -13,13 +14,15 @@
   <input type="submit" value='Associate Device to Person'>
 
 </form>
-SSIDs: <ul>
-        <% device.ssids.each do |ssid| %>
-          <li><%="<a href='/ssid?#{ssid.id}'> #{ssid.name} </a>"%></li>
-        <% end %>
-      </ul>
+<p class=<%= p_classes %> SSIDs: </p>
+<ul>
+  <% device.ssids.each do |ssid| %>
+    <li><%="<a href='/ssid?#{ssid.id}'> #{ssid.name} </a>"%></li>
+  <% end %>
+</ul>
 
-      <div id="time_chart" style="width: 80%"></div>
+
+<div id="time_chart" style="width: 80%"></div>
 
 
 <script>

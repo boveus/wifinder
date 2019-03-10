@@ -3,8 +3,10 @@ class Routes
     "/" => :home,
     "/device" => :device,
     "/devices" => :devices,
+    "/multidevices" => :multidevices,
     "/ssid" => :ssid,
     "/ssids" => :ssids,
+    "/multissids" => :multissids,
     "/people" => :people
   }
 

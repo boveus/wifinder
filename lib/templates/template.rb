@@ -23,12 +23,20 @@ class Template
     Ssid.all
   end
 
+  def multi_ssids
+    Ssid.more_than_five_devices
+  end
+
   def ssid
     Ssid.find(@data[:id])
   end
 
   def devices
     Device.all
+  end
+
+  def multi_devices
+    Device.more_than_five_ssids
   end
 
   def all_people
